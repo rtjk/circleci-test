@@ -3,7 +3,7 @@ version: 2.1
 executors:
   c-executor:
     docker:
-      - image: circleci/gcc:latest
+      - image: gcc:latest
 
 jobs:
   build:
