@@ -1,15 +1,25 @@
 version: 2.1
 
-executors:
-  c-executor:
-    docker:
-      - image: gcc:latest
+# executors:
+#   c-executor:
+#     docker:
+#       - image: gcc:latest
 
 jobs:
   build:
-    executor: c-executor
+    # executor: c-executor
+    docker:
+      - image: gcc:latest
     steps:
       - checkout
+      #################################################
+      - run:
+          name: Set Safe Directory
+          command: git config --global --add safe.directory /tmp/_circleci_local_build_repo
+      - run:
+          name: list
+          command: ls -la
+      #################################################
       - run:
           name: Compile main.c
           command: |
