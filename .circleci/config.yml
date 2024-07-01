@@ -11,15 +11,14 @@ jobs:
     docker:
       - image: gcc:latest
     steps:
-      - checkout
-      #################################################
       - run:
-          name: Set Safe Directory
+          # to avoid "detected dubious ownership in repository" when using circleci local
+          name: Set safe dir
           command: git config --global --add safe.directory /tmp/_circleci_local_build_repo
+      - checkout
       - run:
-          name: list
+          name: List files
           command: ls -la
-      #################################################
       - run:
           name: Compile main.c
           command: |
