@@ -1,0 +1,24 @@
+version: 2.1
+
+executors:
+  c-executor:
+    docker:
+      - image: circleci/gcc:latest
+
+jobs:
+  build:
+    executor: c-executor
+    steps:
+      - checkout
+      - run:
+          name: Compile main.c
+          command: |
+            gcc -o main main.c
+      - run:
+          name: Run main
+          command: ./main
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
